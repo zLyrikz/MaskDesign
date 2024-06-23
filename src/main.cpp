@@ -9,16 +9,25 @@ using std::endl;
 void ReadParameters(const std::string& _file, std::vector<double>& _parameters)
 {
 	std::ifstream file(_file);
-	_parameters.clear();
-	_parameters.reserve(21);
-	std::string line;
+	if (file.is_open())
+	{
+		_parameters.clear();
+		_parameters.reserve(21);
+		std::string line;
 
-	while (std::getline(file, line)) {
-		std::istringstream iss(line);
-		double value;
-		std::string comment;
-		if (!(iss >> value)) { continue; } // error or line without number
-		_parameters.push_back(value);
+		while (std::getline(file, line)) {
+			std::istringstream iss(line);
+			double value;
+			std::string comment;
+			if (!(iss >> value)) { continue; } // error or line without number
+			_parameters.push_back(value);
+		}
+
+		file.close();
+	}
+	else
+	{
+		cout << "ERROR cannot open parameters.txt file: " << _file << endl;
 	}
 }
 
