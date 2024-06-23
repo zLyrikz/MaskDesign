@@ -1,0 +1,27 @@
+300 # cushion BFGS optimization max iteration	
+
+# (cushion initialization) trajectory curve adjustment weight parameters:
+1e3 # objective function: measuring curve to human face distance
+2e-4 # cushion width
+5e-6 # curvature; control curve smoothness
+0.01 # symmetry
+1e8 # alignment
+120.0 # angle
+
+# FEM simulation parameters
+1.11 # cushion material E module MPa(N/mm2)
+0.49 # cushion material poisson ratio
+1 # cushion discretization layer number
+3.0 # cushion discretization thickness (mm)
+
+# cushion optimization parameters 
+1e3 # evaluation comfort metric: average pressure 
+0.2 # evaluation air leakage metric: force distribution
+2e-4 # evaluation air leakage metric: area distribution
+0.01 # convexity penalty weight
+5e-4 # tetrahedral inversion barrier weight
+1.0 # height field barrier weight
+1e-6 # regularization cushion width weight
+0.01 # regularization profile length weight
+0.001 # regularization profile similarity weight
+1e-6 # regularization cushion size weight
