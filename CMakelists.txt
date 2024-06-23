@@ -1,0 +1,123 @@
+cmake_minimum_required(VERSION 3.7)
+project(MaskDesign)
+
+set(CMAKE_CXX_STANDARD 17)
+if(MSVC)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++17")
+endif(MSVC)
+
+set(CMAKE_CONFIGURATION_TYPES "Debug;Release")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
+
+add_definitions(/D_USE_MATH_DEFINES)
+
+#path
+SET(EIGEN_PATH ${PROJECT_SOURCE_DIR}/src/Eigen)
+SET(OPENMESH_PATH ${PROJECT_SOURCE_DIR}/src/OpenMesh)
+SET(OPENMESH_LIB_PATH ${PROJECT_SOURCE_DIR}/lib)
+
+include_directories(${EIGEN_PATH})
+include_directories(${OPENMESH_PATH})
+link_directories(${OPENMESH_LIB_PATH})
+
+
+# Libigl
+list(PREPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+option(LIBIGL_WITH_OPENGL            "Use OpenGL"         OFF)
+option(LIBIGL_WITH_OPENGL_GLFW       "Use GLFW"           OFF)
+include(libigl)
+
+file (GLOB ANN_FILE
+    src/ANN/*
+)
+
+file (GLOB MeshViewer_FILE
+    src/MeshViewer/MeshDefinition.*
+)
+
+file (GLOB Alglib_FILE
+    src/Alglib/*
+)
+
+file (GLOB CurveNSurface_FILE
+    src/CurveNSurface/*
+)
+
+file (GLOB MaskInterface_FILE
+    src/MaskInterface/*
+)
+
+file (GLOB MeshProcessing_FILE
+    src/MeshProcessing/*
+)
+
+file (GLOB Optimization_FILE
+    src/Optimization/*.cpp src/Optimization/*.h
+)
+
+file (GLOB OptimizationBFGS_FILE
+    src/Optimization/BFGS/*
+)
+
+file (GLOB Optimizationlinesearch_FILE
+    src/Optimization/linesearch/*
+)
+
+file (GLOB Utility_FILE
+    src/Utility/*
+)
+
+file (GLOB Evaluation_FILE
+    src/Evaluation/*
+)
+
+file (GLOB FEM_FILE
+    src/FEM/*
+)
+
+# discregrid library
+include_directories(${PROJECT_SOURCE_DIR}/src/discregrid/include)
+link_directories(${PROJECT_SOURCE_DIR}/lib)
+
+add_executable(${PROJECT_NAME} ${SRCFILES} 
+    src/main.cpp
+    ${ANN_FILE}
+    ${MeshViewer_FILE}
+    ${Alglib_FILE}
+    ${CurveNSurface_FILE}
+    ${MaskInterface_FILE}
+    ${MeshProcessing_FILE}
+    ${OptimizationBFGS_FILE}
+    ${Optimizationlinesearch_FILE}
+    ${Optimization_FILE}
+    ${Utility_FILE}
+    ${Evaluation_FILE}
+    ${FEM_FILE}
+)
+
+source_group(ANN FILES ${ANN_FILE})
+source_group(MeshViewer FILES ${MeshViewer_FILE})
+source_group(alglib FILES ${Alglib_FILE})
+source_group(CurveNSurface FILES ${CurveNSurface_FILE})
+source_group(MaskInterface FILES ${MaskInterface_FILE})
+source_group(MeshProcessing FILES ${MeshProcessing_FILE})
+source_group(Optimization FILES ${Optimization_FILE})
+source_group(Optimization\\BFGS FILES ${OptimizationBFGS_FILE})
+source_group(Optimization\\linesearch FILES ${Optimizationlinesearch_FILE})
+source_group(Utility FILES ${Utility_FILE})
+source_group(Evaluation FILES ${Evaluation_FILE})
+source_group(FEM FILES ${FEM_FILE})
+
+target_link_libraries(${PROJECT_NAME} PUBLIC 
+    optimized OpenMeshCore 
+    optimized OpenMeshTools
+    debug OpenMeshCored 
+    debug OpenMeshToolsd
+    igl::core 
+    optimized Discregrid
+    debug Discregrid_d
+)
+
+# include finite-diff.cmake in the cmake folder
+include(finite-diff)
+target_link_libraries(${PROJECT_NAME} PUBLIC finitediff::finitediff)

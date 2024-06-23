@@ -1,0 +1,10 @@
+point0: 0 0
+half1_point1_length_: 6.36874
+tangent_angle_: -0.0234172
+half2_point1_length_: 10.584
+half1_degree_: 2
+half2_degree_: 2
+half1_rest_size: 1
+half1_rest_: -7.80082  3.25663
+half2_rest_size: 1
+half2_rest_: 7.45446 18.6166
