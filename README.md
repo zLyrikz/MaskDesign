@@ -100,7 +100,7 @@ If you want to use any part of this work, please use the following reference:
 
 ```
 @article{Lu-2024-MaskDesign,
-    author={Yukun Lu and Yuhang Wang and Peng Song and Hang Siang Wong and Yingjuan Mok 	and Ligang Liu},
+    author={Yukun Lu and Yuhang Wang and Peng Song and Hang Siang Wong and Yingjuan Mok and Ligang Liu},
     title={Computational Design of Custom-Fit PAP Masks },
     journal={Computers & Graphics (Proc. of Shape Modeling International)},
     year={2024} 
