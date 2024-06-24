@@ -70,7 +70,7 @@ See the input human face and it's alignment with the generic mask here:
 
 <div align=center><img src="./resources/input.png" alt="input" style="zoom:60%;" /></div>
 
-To use a different human face model, align it with the generic mask [generice mask](./data/generic_cushion/generic_mask_interface.obj) first. We assume that the alignment simulates the scenario of a human wearing the mask, and some interpenetration is expected.
+To use a different human face model, align it with the [generice mask](./data/generic_cushion/generic_mask_interface.obj) first. We assume that the alignment simulates the scenario of a human wearing the mask, and some interpenetration is expected.
 
 ### Program Output:
 A **customized cushion surface** and a **customized mask interface** will be saved as triangle meshes to `./output` folder. Here is the output visualized in MeshLab:
