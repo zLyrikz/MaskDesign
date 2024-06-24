@@ -30,7 +30,7 @@ The repository contains the following items:
 ## Build (Windows only):
 ### Dependencies
 
-- [OpenMesh](https://www.graphics.rwth-aachen.de/software/openmesh/), [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page), [ALGLIB](https://www.alglib.net/), [CGAL](https://www.cgal.org/), [TriangleMeshDistance](https://github.com/InteractiveComputerGraphics/TriangleMeshDistance), [cppoptlib](https://github.com/PatWie/CppNumericalSolvers), [NelderMead](https://people.math.sc.edu/Burkardt/cpp_src/asa047/asa047.html) are already included in the project, and can be built through CMake.
+- [OpenMesh](https://www.graphics.rwth-aachen.de/software/openmesh/), [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page), [ALGLIB](https://www.alglib.net/), [CGAL](https://www.cgal.org/), [TriangleMeshDistance](https://github.com/InteractiveComputerGraphics/TriangleMeshDistance), [CppNumericalSolvers](https://github.com/PatWie/CppNumericalSolvers), [Nelder-Mead](https://people.math.sc.edu/Burkardt/cpp_src/asa047/asa047.html) are already included in the project, and can be built through CMake.
 - [libigl](https://libigl.github.io/), [finite-diff](https://github.com/zfergus/finite-diff), [Discregrid](https://github.com/InteractiveComputerGraphics/Discregrid?tab=readme-ov-file) are automatically downloaded and built through CMake.
 
 
