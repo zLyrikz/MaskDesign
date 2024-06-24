@@ -77,7 +77,7 @@ void InterfaceDesign::Design(Mesh& _cushion_surface, Mesh& _mask_interface, int 
 
 	// rail curve adjustment	
 	Mesh connector;// connector distance tree
-	OpenMesh::IO::read_mesh(connector, data_path_ + "/connector.obj");
+	OpenMesh::IO::read_mesh(connector, data_path_ + "/connector/connector.obj");
 	MeshInfo connector_mesh_info(&connector);
 	std::vector<std::array<double, 3>>* connector_vertices = new std::vector<std::array<double, 3>>;
 	std::vector<std::array<int, 3>>* connector_triangles = new std::vector<std::array<int, 3>>;
@@ -128,7 +128,7 @@ void InterfaceDesign::Design(Mesh& _cushion_surface, Mesh& _mask_interface, int 
 	int cross_section_half2_degree = 2;
 	cushion.setInitialCustomKeyCrossSections_ChangableDegree(sample_u_F2, cross_section_half1_degree, cross_section_half2_degree);
 	cushion.ConstructCrossSectionSurface(3);
-	cushion.setFixedBoundary(data_path_ + "/outside_boundary.txt", 101);
+	cushion.setFixedBoundary(data_path_ + "/connector/outside_boundary.txt", 101);
 
 
 
@@ -148,7 +148,7 @@ void InterfaceDesign::Design(Mesh& _cushion_surface, Mesh& _mask_interface, int 
 	find_distance.setHead(head_tmds[0]);
 	std::vector<Mesh::Point> outside_boundary;
 	ReadRhino read_boundary;
-	read_boundary.Read3DPoints_Brackets(data_path_ + "/outside_boundary.txt", outside_boundary, true);
+	read_boundary.Read3DPoints_Brackets(data_path_ + "/connector/outside_boundary.txt", outside_boundary, true);
 	double connector_to_head_distance = find_distance.MinDistance(outside_boundary);
 	double push_cushion_into_face = connector_to_head_distance / 4.0;
 	Mesh human_face_pushed = *human_face_;
@@ -302,7 +302,7 @@ void InterfaceDesign::Design(Mesh& _cushion_surface, Mesh& _mask_interface, int 
 
 	// get the connecting boundary on the connector
 	std::vector<Mesh::Point> inside_points;
-	read_boundary.Read3DPoints_Brackets(data_path_ + "/inside_boundary.txt", inside_points, true);
+	read_boundary.Read3DPoints_Brackets(data_path_ + "/connector/inside_boundary.txt", inside_points, true);
 
 	Mesh intermediate;
 	ConnectFrontNBack connect_it;

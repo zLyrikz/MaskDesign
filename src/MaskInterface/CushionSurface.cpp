@@ -1526,17 +1526,17 @@ void CushionSurface::InitializeAsGenericCushion(std::string _data_file)
 	// data
 	int sample_u = 300;
 	int sample_v = 50;
-	std::string rail_file = _data_file + "/GenericCushion_rail.txt";
+	std::string rail_file = _data_file + "/generic_cushion/raw/GenericCushion_rail.txt";
 	std::vector<std::string> key_cross_section_files(17);
 	for (int iKey = 0; iKey < key_cross_section_files.size(); ++iKey)
 	{
-		key_cross_section_files[iKey] = _data_file + "/GenericCushion_KeyCrossSection" + std::to_string(iKey) + ".txt";
+		key_cross_section_files[iKey] = _data_file + "/generic_cushion/raw/GenericCushion_KeyCrossSection" + std::to_string(iKey) + ".txt";
 	}
 	std::vector<double> key_cross_section_u{ 0.0266667,0.0633333,0.12,0.18,0.23,0.32,0.403333,0.463333,0.506667,0.536667,0.576667,0.663333,0.723333,0.803333,0.866667,0.92,0.98 };
 	cross_section_control_curve_degree_ = 3;
 	connector_pull_back_length_ = 0;
 	Mesh extracted_centerline_curve;
-	OpenMesh::IO::read_mesh(extracted_centerline_curve, _data_file + "/extracted_rail_polygon.obj");
+	OpenMesh::IO::read_mesh(extracted_centerline_curve, _data_file + "/generic_cushion/extracted_centerline_curve.obj");
 	std::vector<Eigen::VectorXd> extracted_polygon;
 	SubMesh get_polygon;
 	get_polygon.PointCloudMeshToEigenVectorX(extracted_centerline_curve, extracted_polygon);
@@ -1558,7 +1558,7 @@ void CushionSurface::InitializeAsGenericCushion(std::string _data_file)
 	}
 	ConstructCrossSectionSurface(cross_section_control_curve_degree_);
 
-	setFixedBoundary(_data_file + "/outside_boundary.txt", 100, true);
+	setFixedBoundary(_data_file + "/connector/outside_boundary.txt", 100, true);
 	computeDiscreteCrossSections_NewFrames(sample_v);
 	constructSurfaceMesh();
 	setCurrentMeshAsOriginalCushionMesh();

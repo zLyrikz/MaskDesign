@@ -36,8 +36,8 @@ int main(int argc, char* argv[])
 	// provide input instruction
 	if (argc < 2) {
 		std::cout << "Please provide the path to an aligned human face as an argument. Note that the face scale is measured in millimeters.\n";
-		std::cout << "Usage: " << argv[0] << " [path_to_human_face_file]\n";
-		std::cout << "Example: " << argv[0] << " D:/MaskDesign/data/face1.obj\n";
+		std::cout << "Usage: \n command line input [path_to_exe_file] [path_to_human_face_file]\n";
+		std::cout << "Example: \n " << argv[0] << " D:/MaskDesign/data/human_face/face1.obj\n";
 		return 1; // exit the program
 	}
 
