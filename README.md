@@ -19,6 +19,7 @@ The repository contains the following items:
   - **bin/Release**: This directory contains the compiled binaries of the project built in release mode. Release mode is optimized for performance and is usually stripped of debugging information.
   - **cmake**: This directory contains additional CMake modules or configuration files used by the `CMakeLists.txt` to manage the build process.
   - **lib**: This directory holds compiled libraries that the project depends on. 
+  - **script** This directory contains scripts for configure and running the program.
   - **src**: This directory contains the source code of the project. It includes the `.cpp`, `.h`, `.c`, `.hpp`, and other source files written in the project in C++.
 
 - **Data**
@@ -47,30 +48,33 @@ The repository contains the following items:
 - Click `Configure`, and just use the default options for all of the Configure settings; see inset below. On first use, the whole process takes about 5-10 minutes. Then click `Generate`.
 <div align=center><img src="./resources/set2.png" alt="set2" style="zoom:67%;" /></div>
 
-- Run the script `Run.bat` in the `MaskDesign` (home) folder.
+- Run the script `configure.bat` in the `./script/` folder to add dll files for the executable files.
 
   ```bat
-  Run.bat
+  configure.bat
   ```
 
-- Click `Open Project` on CMake-GUI. Then build the project in Visual Studio.
+- Click `Open Project` on CMake-GUI. Set MaskDesign as a Sartup project, then build the project in Visual Studio.
 
 ## Usage:
 ### Running the Program:
-From home diretory, navigate to the release directory and execute the program with the path to the human face model file as an argument:
-```bash
-cd ./bin/Release
-./MaskDesign.exe [path_to_human_face_file]
-```
-For instance, to reproduce a result from Fig.8 in the paper:
-```bash
-./MaskDesign.exe path_to_data_folder/human_face/face1.obj
-```
-See the input human face and it's alignment with the generic mask here:
+ - To quickly generate a result from Fig.8 in the paper, run the script `./script/run_example.bat`.
 
-<div align=center><img src="./resources/input.png" alt="input" style="zoom:60%;" /></div>
 
-To use a different human face model, align it with the [generice mask](./data/generic_cushion/generic_mask_interface.obj) first. We assume that the alignment simulates the scenario of a human wearing the mask, and some interpenetration is expected.
+ - Runing the progarm though command: from home diretory, navigate to the release directory and execute the program with the path to the human face model file as an argument:
+   ```bash
+   cd ./bin/Release
+   ./MaskDesign.exe [path_to_human_face_file]
+   ```
+    For instance, to reproduce a result from Fig.8 in the paper:
+    ```bash
+   ./MaskDesign.exe path_to_data_folder/human_face/face1.obj
+    ```
+    See the input human face and it's alignment with the generic mask here:
+
+   <div align=center><img src="./resources/input.png" alt="input" style="zoom:60%;" /></div>
+
+ - To use a different human face model, align it with the [generice mask](./data/generic_cushion/generic_mask_interface.obj) first. We assume that the alignment simulates the scenario of a human wearing the mask, and some interpenetration is expected.
 
 ### Program Output:
 A **customized cushion surface** and a **customized mask interface** will be saved as triangle meshes to `./output` folder. Here is the output visualized in MeshLab:
