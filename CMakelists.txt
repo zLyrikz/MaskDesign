@@ -12,12 +12,19 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 add_definitions(/D_USE_MATH_DEFINES)
 
 #path
-SET(EIGEN_PATH ${PROJECT_SOURCE_DIR}/src/Eigen)
+SET(EIGEN_PATH ${PROJECT_SOURCE_DIR}/src/eigen3)
 SET(OPENMESH_PATH ${PROJECT_SOURCE_DIR}/src/OpenMesh)
 SET(OPENMESH_LIB_PATH ${PROJECT_SOURCE_DIR}/lib)
+SET(Boost_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/src)
+SET(Boost_LIBRARY_DIR ${PROJECT_SOURCE_DIR}/lib/boost)
+find_package(BOOST 1.48 REQUIRED)
+SET(CGAL_PATH ${PROJECT_SOURCE_DIR}/src)
 
 include_directories(${EIGEN_PATH})
 include_directories(${OPENMESH_PATH})
+include_directories(${Boost_INCLUDE_DIR})
+link_directories(${Boost_LIBRARY_DIR})
+include_directories(${CGAL_PATH})
 link_directories(${OPENMESH_LIB_PATH})
 
 
@@ -25,6 +32,7 @@ link_directories(${OPENMESH_LIB_PATH})
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 option(LIBIGL_WITH_OPENGL            "Use OpenGL"         OFF)
 option(LIBIGL_WITH_OPENGL_GLFW       "Use GLFW"           OFF)
+option(LIBIGL_WITH_CGAL              "Use CGAL"           ON)
 include(libigl)
 
 file (GLOB ANN_FILE
@@ -114,6 +122,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
     debug OpenMeshCored 
     debug OpenMeshToolsd
     igl::core 
+    igl::cgal
     optimized Discregrid
     debug Discregrid_d
 )
